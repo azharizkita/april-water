@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Transaksi extends CI_Controller
+class Pengiriman extends CI_Controller
 {
    public function __construct()
    {
@@ -11,13 +11,13 @@ class Transaksi extends CI_Controller
         if ($this->session->userdata('user_priv')=="Pelanggan"){
             redirect('home');
         } elseif ($this->session->userdata('user_priv')=="Distri") {
-            redirect('distributor');
+            $this->load->view("header");
+            $this->load->view("content/distributor/pengiriman");
+            $this->load->view("footer");
         } elseif($this->session->userdata('user_priv')=="Admin") {
             redirect('admin');
         } elseif($this->session->userdata('user_priv')=="Kasir") {
-            $this->load->view("header");
-            $this->load->view("content/kasir/transaksi");
-            $this->load->view("footer");
+            redirect('kasir');
         } else {
             redirect('greeter');
         }
